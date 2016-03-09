@@ -38,11 +38,7 @@ end
 
 # Build-specific configuration
 configure :build do
-  # Minify CSS on build
-  # activate :minify_css
-
-  # Minify Javascript on build
-  # activate :minify_javascript
+  activate :asset_host, {host: "//framgia.github.io/railsgirls-hn/"}
 end
 
 set :haml, {ugly: true, format: :html5}
