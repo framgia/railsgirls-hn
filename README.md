@@ -17,6 +17,7 @@ $ cd railsgirls.github.com
 ```
 
 ```
+$ gem install bundler
 $ bundle install
 ```
 
