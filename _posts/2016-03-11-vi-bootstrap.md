@@ -1,14 +1,15 @@
 ---
-layout: default
-title: Thiết kế trang web với HTML & CSS
-permalink: /vi/thiet-ke
+layout: hanoi-201604
+title: UI hiện đại với Bootstrap
+permalink: /vi/bootstrap
 ---
 
-# Thiết kế trang web với HTML & CSS
+# UI hiện đại với Bootstrap
 
 *Được viết bởi Alex Liao, [@alexliao](http://bannka.com/alex). Dịch và chỉnh sửa bởi [@framgia](https://github.com/framgia)*
 
-App của bạn đã có thể chạy tốt, nhưng nhìn nó vẫn khá thô sơ. Chúng ta sẽ đưa một vài thiết kế vào cho bắt mắt.
+App của bạn đã có thể chạy tốt, nhưng nhìn nó vẫn khá thô sơ. Chúng ta sẽ đưa một vài thiết kế vào cho bắt mắt.  
+**Coach**: Nói sơ qua về Bootstrap
 
 ## *1* Thay đổi layout của toàn bộ ứng dụng
 Mở file `app/assets/stylesheets/application.css` và thay dòng
@@ -99,71 +100,86 @@ Sau 4 phần trên, các bạn đã có thể hiểu qua công việc thiết k�
 ## *A* Thiết kế các nút nhấn 
 **Coach**: Đưa ra một vài gợi ý về thiết kế các nút nhấn, biến một đường link trông giống như nút, và giải thích làm thế nào chúng ta có thể với `Bootstrap`
 
-Mở file `app/views/ideas/show.html.erb` và đổi
-
-{% highlight erb %}
-<%= link_to 'Edit', edit_idea_path(@idea) %> |
-<%= link_to 'Destroy', @idea, data: { confirm: 'Are you sure?' }, method: :delete %> |
-<%= link_to 'Back', ideas_path %>
-{% endhighlight %}
-
-thành
-
-{% highlight erb %}
-<%= link_to 'Edit', edit_idea_path(@idea), class: "btn btn-warning" %> |
-<%= link_to 'Destroy', @idea, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger" %> |
-<%= link_to 'Back', ideas_path, class: "btn btn-info" %>
-{% endhighlight %}
-
-OK, tiếp tục F5 trang web của bạn xem nào. Tata...bạn có nhận ra sự thay đổi?
+<div class="collapse" id="button-example">
+  Mở file <code>app/views/ideas/show.html.erb</code> và đổi
+  
+  {% highlight erb %}
+  <%= link_to 'Edit', edit_idea_path(@idea) %> |
+  <%= link_to 'Destroy', @idea, data: { confirm: 'Are you sure?' }, method: :delete %> |
+  <%= link_to 'Back', ideas_path %>
+  {% endhighlight %}
+  
+  thành
+  
+  {% highlight erb %}
+  <%= link_to 'Edit', edit_idea_path(@idea), class: "btn btn-warning" %> |
+  <%= link_to 'Destroy', @idea, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger" %> |
+  <%= link_to 'Back', ideas_path, class: "btn btn-info" %>
+  {% endhighlight %}
+  
+  OK, tiếp tục F5 trang web của bạn xem nào. Tata...bạn có nhận ra sự thay đổi?
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#button-example" aria-expanded="false" aria-controls="button-example">
+  Code mẫu
+</button>
 
 ## *B* Thiết kế lại form
+
 **Coach**: Form hiện tại của trang tạo mới `Idea` còn quá thô sơ, chúng ta hãy làm cho nó trở nên đẹp hơn. Có rất nhiều thiết kế đẹp cho form mà chúng ta có thể dễ dàng làm được như:
-- Form inline
-- Form horizontal
+
+<ul>
+  <li>Form inline</li>
+  <li>Form horizontal</li>
+</ul>
+
 Hãy giải thích kỹ hơn về những kiểu form này. 
 
-Mở file `app/views/ideas/_form.html.erb` và thay đổi dòng
-
-{% highlight erb %}
-<%= form_for @idea, html: {multipart: true} do |f| %>
-{% endhighlight %}
-
-thành
-
-{% highlight erb %}
-<%= form_for @idea, html: {multipart: true, class: "form-horizontal"} do |f| %>
-{% endhighlight %}
-
-và thay toàn bộ các đoạn code `<div class="field">` ~ `<div class="actions">` thành
-
-{% highlight erb %}
-<div class="form-group">
-  <%= f.label :name, class: "col-sm-2 control-label" %>
-  <div class="col-sm-10">
-    <%= f.text_field :name, class: "form-control", placeholder: "You awesome idea" %>
+<div class="collapse" id="form-example">
+  Mở file <code>app/views/ideas/_form.html.erb</code> và thay đổi dòng
+  
+  {% highlight erb %}
+  <%= form_for @idea, html: {multipart: true} do |f| %>
+  {% endhighlight %}
+  
+  thành
+  
+  {% highlight erb %}
+  <%= form_for @idea, html: {multipart: true, class: "form-horizontal"} do |f| %>
+  {% endhighlight %}
+  
+  và thay toàn bộ các đoạn code <code>&lt;div class="field"&gt;</code> ~ <code>&lt;div class="actions"&gt;</code> thành
+  
+  {% highlight erb %}
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: "form-control", placeholder: "You awesome idea" %>
+    </div>
   </div>
-</div>
-<div class="form-group">
-  <%= f.label :description, class: "col-sm-2 control-label" %>
-  <div class="col-sm-10">
-    <%= f.text_area :description, class: "form-control", placeholder: "How is your idea?" %>
+  <div class="form-group">
+    <%= f.label :description, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_area :description, class: "form-control", placeholder: "How is your idea?" %>
+    </div>
   </div>
-</div>
-<div class="form-group">
-  <%= f.label :picture, class: "col-sm-2 control-label" %>
-  <div class="col-sm-10">
-    <%= f.file_field :picture %>
+  <div class="form-group">
+    <%= f.label :picture, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.file_field :picture %>
+    </div>
   </div>
-</div>
-<div class="form-group">
-  <div class="col-sm-offset-2 col-sm-10">
-    <%= f.submit "Submit your idea", class: "btn btn-success" %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "Submit your idea", class: "btn btn-success" %>
+    </div>
   </div>
+  {% endhighlight %}
+  
+  Trở lại và F5 trang web của bạn, bạn đã thấy gì?
 </div>
-{% endhighlight %}
-
-Trở lại và F5 trang web của bạn, bạn đã thấy gì?
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#form-example" aria-expanded="false" aria-controls="form-example">
+  Code mẫu
+</button>
 
 **Coach**: Giải thích thêm về các css-class `col-sm-*` và `col-sm-offset-*`
 
