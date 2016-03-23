@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: hanoi-201604
 title: Hướng dẫn thêm tính năng comment cho ứng dụng Rails Girls
 permalink: /vi/binh-luan
 ---
@@ -109,16 +109,145 @@ Vậy là đã hoàn thành. Bây giờ bạn có thể xem một idea mà bạn
 
 #### *1.* Dễ
 
-- Di chuyển đến trang `idea/show` sau khi tạo mới một comment
-- Thêm trường `like_count` cho một comment (số like cho một comment)
-- Thêm trường `picture` cho một comment (trường này sẽ có tác dụng cho phép comment bằng hình ảnh)
+- Di chuyển đến trang `idea/show` sau khi tạo mới một bình luận (comment)
+<div class="collapse" id="button-example">
+Mở tệp tin `app/controllers/comments_controller.rb` trong hàm `create` thay thế dòng sau
+{% highlight ruby %}
+format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+{% endhighlight %}
+bằng dòng sau
+{% highlight ruby %}
+format.html { redirect_to idea_path(@comment.idea_id), notice: 'Comment was successfully created.' }
+{% endhighlight %}
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#button-example" aria-expanded="false" aria-controls="button-example">Code mẫu</button>
+
+- Thêm trường `like_count` cho một bình luận (số like cho một comment)
+<div class="collapse" id="like_count-example">
+Trong cửa sổ dòng lệnh gõ lệnh sau
+{% highlight ruby %}
+rails generate migration AddLikeCountToComments like_count:integer
+rake db:migrate
+{% endhighlight %}
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#like_count-example" aria-expanded="false" aria-controls="like_count-example">Code mẫu</button>
+
+- Thêm trường `picture` cho một bình luận (trường này sẽ có tác dụng cho phép bình luận bằng hình ảnh)
+<div class="collapse" id="picture-example">
+Trong cửa sổ dòng lệnh gõ lệnh sau
+{% highlight ruby %}
+rails generate migration AddPictureToComments picture:string
+rake db:migrate
+{% endhighlight %}
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#picture-example" aria-expanded="false" aria-controls="picture-example">Code mẫu</button>
+
 - Thêm validation cho các trường `user_name` và `body` trong model `comment`
-- Thêm trường `reply_id` cho comment
+<div class="collapse" id="validation-example">
+Mở tệp tin `app/models/comment.rb` và thêm vào dòng sau
+{% highlight ruby %}
+validates_presence_of :user_name, :body
+{% endhighlight %}
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#validation-example" aria-expanded="false" aria-controls="validation-example">Code mẫu</button>
+
+- Thêm trường `reply_id` cho bình luận
+<div class="collapse" id="reply-example">
+Trong cửa sổ dòng lệnh gõ
+{% highlight ruby %}
+rails generate migration AddReplyIdToComments reply_id:integer
+rake db:migrate
+{% endhighlight %}
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#reply-example" aria-expanded="false" aria-controls="reply-example">Code mẫu</button>
 
 #### *2.* Bình thường
-- Cho phép comment bằng hình ảnh
-- Sắp xếp các comment theo thứ tự `like` từ cao đến thấp
-- Khi tạo một comment bị lỗi => hiển thị trang idea/show và hiển thị lỗi trên trang đó.
+- Cho phép bình luận bằng hình ảnh
+<div class="collapse" id="image_comment-example">
+Mở tệp tin `app/models/comment.rb` và thêm vào dòng sau
+{% highlight ruby %}
+mount_uploader :picture, PictureUploader
+{% endhighlight %}
+Mở tệp tin `app/views/comments/_form.html.erb` và thêm vào dòng sau
+{% highlight ruby %}
+<div class="field">
+  <%= f.label :picture %><br>
+  <%= f.file_field :picture %>
+</div>
+{% endhighlight %}
+Nếu có lỗi xảy ra, hãy thay đổi dòng sau
+{% highlight ruby %}
+<%= form_for(@comment) do |f| %>
+{% endhighlight %}
+thành
+{% highlight ruby %}
+<%= form_for @comment, :html => {:multipart => true} do |f| %>
+{% endhighlight %}
+Mở tệp tin `app/controllers/comments_controller.rb` và thay đổi dòng sau
+{% highlight ruby %}
+def comment_params
+   params.require(:comment).permit(:user_name, :body, :idea_id)
+end
+{% endhighlight %}
+thành dòng sau
+{% highlight ruby %}
+def comment_params
+   params.require(:comment).permit(:user_name, :body, :idea_id, :picture)
+end
+{% endhighlight %}
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#image_comment-example" aria-expanded="false" aria-controls="image_comment-example">Code mẫu</button>
+
+- Sắp xếp các bình luận theo thứ tự `like` từ cao đến thấp
+<div class="collapse" id="order_like-example">
+Mở tệp tin `app/controllers/ideas_controller.rb` trong hàm `show` thay thế dòng sau
+{% highlight ruby %}
+@comments = @idea.comments.all
+{% endhighlight %}
+bằng
+{% highlight ruby %}
+@comments = @idea.comments.order(like_count: :desc).all
+{% endhighlight %}
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#order_like-example" aria-expanded="false" aria-controls="order_like-example">Code mẫu</button>
+
+- Khi tạo một bình luận bị lỗi => hiển thị trang idea/show và hiển thị lỗi trên trang đó.
+<div class="collapse" id="error-example">
+Mở tệp tin `app/controllers/comments_controller.rb` trong hàm `create` bên dưới dòng
+{% highlight ruby %}
+@comment = Comment.new(comment_params)
+{% endhighlight %}
+thêm vào dòng sau
+{% highlight ruby %}
+@idea = Idea.find_by_id @comment.idea_id
+@comments = @idea.comments.all
+{% endhighlight %}
+Thay đổi mã sau
+{% highlight ruby %}
+respond_to do |format|
+  if @comment.save
+     format.html { redirect_to @comment, notice: 'Comment was successfully       created.' }
+     format.json { render :show, status: :created, location: @comment }
+else
+    format.html { render :new }
+    format.json { render json: @comment.errors, status: :unprocessable_entity }
+  end
+end
+{% endhighlight %}
+thành
+{% highlight ruby %}
+respond_to do |format|
+  if @comment.save
+    format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+    format.json { render :show, status: :created, location: @comment }
+  else
+    format.html { render :template => "ideas/show" }
+    format.json { render json: @comment.errors, status: :unprocessable_entity }
+  end
+end
+{% endhighlight %}
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#error-example" aria-expanded="false" aria-controls="error-example">Code mẫu</button>
 
 #### *3.* Khó
 - Cho phép trả lời các comment
