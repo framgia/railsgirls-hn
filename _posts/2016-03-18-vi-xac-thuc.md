@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: hanoi-201604
 title: Thêm tính năng xác thực (authentication) với Devise
 permalink: /vi/xac-thuc
 ---
@@ -130,12 +130,150 @@ Mở trình duyệt của bạn và hãy thử đăng nhập, đăng xuất.
 
 ### *1.* Dễ
 - Thêm trường tên và số điện thoại cho model User
-- Cấu hình mail server để gửi mail thông báo quên password cho User
+<div class="collapse" id="add_field-example">
+Trong cửa sổ dòng lệnh bạn gõ lệnh sau
+{% highlight ruby %}
+rails generate migration AddUserNameToUsers user_name:string telephone:string
+rake db:migrate
+{% endhighlight %}
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#add_field-example" aria-expanded="false" aria-controls="add_field-example">Code mẫu</button>
 
-### *2.* Bình thường
+- Cấu hình mail server để gửi mail thông báo quên password cho User
+<div class="collapse" id="mail-example">
+Mở tệp tin <code>config/environments/development.rb</code> và thêm vào những dòng sau trước từ khóa <code>end</code> ở cuối câu
+{% highlight ruby %}
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+address:              'smtp.gmail.com',
+port:                 587,
+user_name:            '<username>',
+password:             '<password>',
+authentication:       'plain',
+enable_starttls_auto: true  }
+{% endhighlight %}
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#mail-example" aria-expanded="false" aria-controls="mail-example">Code mẫu</button>
+
+#### *2.* Bình thường
 - Cho phép user sửa đổi thông tin cá nhân của họ (tên, số điện thoại) (bước này gắn liền với bước 1 trong phần dễ)
+<div class="collapse" id="edit_field-example">
+Mở tệp tin <code>config/routes.rb</code> và thêm vào
+{% highlight ruby %}
+resource :user, only: [:edit, :update]
+{% endhighlight %}
+Trong thư mục <code>app/controllers</code> thêm một tệp tin với tên là <code>users_controller</code> với nội dung như sau
+{% highlight ruby %}
+class UsersController < ApplicationController
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    if @user.update(user_params)
+      redirect_to root_path, notice: 'Update Profile was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:user_name, :telephone)
+  end
+end
+{% endhighlight %}
+Trong <code>app/views</code> tạo một file mới có tên <code>users/edit.html.erb</code> với nội dung sau
+{% highlight ruby %}
+<h1>Editing Profile</h1>
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this idea from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_name %><br>
+    <%= f.text_field :user_name %>
+  </div>
+  <div class="field">
+    <%= f.label :telephone %><br>
+    <%= f.text_field :telephone %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+{% endhighlight %}
+Mở tệp tin <code>application/layout.html.erb</code> và thay đổi từ dòng 30-32 thành những dòng sau:
+{% highlight ruby %}
+Logged in as <strong><%= current_user.user_name || current_user.email %></strong>.
+<%= link_to 'Edit Password', edit_user_registration_path, :class => 'navbar-link' %> |
+<%= link_to 'Edit Profile', edit_user_path, :class => 'navbar-link' %> |
+{% endhighlight %}
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#edit_field-example" aria-expanded="false" aria-controls="edit_field-example">Code mẫu</button>
+
 - Thêm quan hệ giữa user và ideas (mỗi 1 user có thể có nhiều ideas)
+<div class="collapse" id="user_idea-example">
+Trước hết cần thêm vào trường <code>user_id</code> cho bảng <code>ideas</code>
+{% highlight ruby %}
+rails generate migration AddUserIdToIdeas user_id:integer
+rake db:migrate
+{% endhighlight %}
+Mở tệp tin <code>app/models/user.rb</code> và thêm vào dòng sau
+{% highlight ruby %}
+has_many :ideas
+{% endhighlight %}
+Tiếp đó mở tệp tin <code>app/models/idea.rb</code> và thêm vào dòng sau
+{% highlight ruby %}
+belongs_to :user
+{% endhighlight %}
+Trong tệp tin <code>app/views/ideas/_form.html.erb</code> bạn thêm vào dòng sau
+{% highlight ruby %}
+<%= f.hidden_field :user_id, value: current_user.id %>
+{% endhighlight %}
+Cuối cùng cần cấp quyền truy cập <code>user_id</code> cho <code>ideas_params</code>. Trong tệp tin <code>app/controllers/ideas_controller.rb</code> tìm hàm <code>ideas_params</code> và thay thế dòng code trong hàm bằng dòng dưới đây
+{% highlight ruby %}
+params.require(:idea).permit(:name, :description, :picture, :user_id)
+{% endhighlight %}
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#user_idea-example" aria-expanded="false" aria-controls="user_idea-example">Code mẫu</button>
+
 - Thêm quan hệ giữa user và comments (mỗi 1 user có thể có nhiều comments)
+<div class="collapse" id="user_comment-example">
+Trước hết cần thêm vào trường <code>user_id</code> cho bảng <code>comments</code>
+{% highlight ruby %}
+rails generate migration AddUserIdToComments user_id:integer
+rake db:migrate
+{% endhighlight %}
+Mở tệp tin <code>app/models/user.rb</code> và thêm vào dòng sau
+{% highlight ruby %}
+has_many :comments
+{% endhighlight %}
+Tiếp đó mở tệp tin <code>app/models/comment.rb</code> và thêm vào dòng sau
+{% highlight ruby %}
+belongs_to :user
+{% endhighlight %}
+Trong tệp tin <code>app/views/comments/_form.html.erb</code> bạn thêm vào dòng sau
+{% highlight ruby %}
+<%= f.hidden_field :user_id, value: current_user.id %>
+{% endhighlight %}
+Cuối cùng cần cấp quyền truy cập <code>user_id</code> cho <code>comments_params</code>. Trong tệp tin <code>app/controllers/comments_controller.rb</code> tìm hàm <code>comments_params</code> và thay thế dòng code trong hàm bằng dòng dưới đây
+{% highlight ruby %}
+params.require(:comment).permit(:user_name, :body, :idea_id, :picture, :reply_id, :user_id)
+{% endhighlight %}
+**Lưu ý**: trường <code>:picture</code> và <code>reply_id</code> ở trên là những phần mở rộng cho các câu hỏi trong phần 5, nếu bạn nào bỏ qua phần đó thì ta có thể bỏ 2 trường đó đi.
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#user_comment-example" aria-expanded="false" aria-controls="user_comment-example">Code mẫu</button>
 
 ### *3.* Khó
 - Phân quyền, hoặc vai trò cho mỗi user (ví dụ như admin user có quyền được thêm, xóa hay sửa user, người dùng bình thường chỉ có thể xem được thông tin). Bạn có thể sử dụng những gem phân quyền phổ biến như là `cancancan` hay `the_role`

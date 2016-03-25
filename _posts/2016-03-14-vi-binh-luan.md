@@ -111,7 +111,7 @@ Vậy là đã hoàn thành. Bây giờ bạn có thể xem một idea mà bạn
 
 - Di chuyển đến trang `idea/show` sau khi tạo mới một bình luận (comment)
 <div class="collapse" id="button-example">
-Mở tệp tin `app/controllers/comments_controller.rb` trong hàm `create` thay thế dòng sau
+Mở tệp tin <code>app/controllers/comments_controller.rb</code> trong hàm <code>create</code> thay thế dòng sau
 {% highlight ruby %}
 format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
 {% endhighlight %}
@@ -144,7 +144,7 @@ rake db:migrate
 
 - Thêm validation cho các trường `user_name` và `body` trong model `comment`
 <div class="collapse" id="validation-example">
-Mở tệp tin `app/models/comment.rb` và thêm vào dòng sau
+Mở tệp tin <code>app/models/comment.rb</code> và thêm vào dòng sau
 {% highlight ruby %}
 validates_presence_of :user_name, :body
 {% endhighlight %}
@@ -164,11 +164,11 @@ rake db:migrate
 #### *2.* Bình thường
 - Cho phép bình luận bằng hình ảnh
 <div class="collapse" id="image_comment-example">
-Mở tệp tin `app/models/comment.rb` và thêm vào dòng sau
+Mở tệp tin <code>app/models/comment.rb</code> và thêm vào dòng sau
 {% highlight ruby %}
 mount_uploader :picture, PictureUploader
 {% endhighlight %}
-Mở tệp tin `app/views/comments/_form.html.erb` và thêm vào dòng sau
+Mở tệp tin <code>app/views/comments/_form.html.erb</code> và thêm vào dòng sau
 {% highlight ruby %}
 <div class="field">
   <%= f.label :picture %><br>
@@ -183,7 +183,7 @@ thành
 {% highlight ruby %}
 <%= form_for @comment, :html => {:multipart => true} do |f| %>
 {% endhighlight %}
-Mở tệp tin `app/controllers/comments_controller.rb` và thay đổi dòng sau
+Mở tệp tin <code>app/controllers/comments_controller.rb</code> và thay đổi dòng sau
 {% highlight ruby %}
 def comment_params
    params.require(:comment).permit(:user_name, :body, :idea_id)
@@ -200,7 +200,7 @@ end
 
 - Sắp xếp các bình luận theo thứ tự `like` từ cao đến thấp
 <div class="collapse" id="order_like-example">
-Mở tệp tin `app/controllers/ideas_controller.rb` trong hàm `show` thay thế dòng sau
+Mở tệp tin <code>app/controllers/ideas_controller.rb</code> trong hàm <code>show</code> thay thế dòng sau
 {% highlight ruby %}
 @comments = @idea.comments.all
 {% endhighlight %}
@@ -213,7 +213,7 @@ bằng
 
 - Khi tạo một bình luận bị lỗi => hiển thị trang idea/show và hiển thị lỗi trên trang đó.
 <div class="collapse" id="error-example">
-Mở tệp tin `app/controllers/comments_controller.rb` trong hàm `create` bên dưới dòng
+Mở tệp tin <code>app/controllers/comments_controller.rb</code> trong hàm <code>create</code> bên dưới dòng
 {% highlight ruby %}
 @comment = Comment.new(comment_params)
 {% endhighlight %}
