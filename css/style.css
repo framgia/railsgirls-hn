@@ -99,7 +99,7 @@ nav a {
 
 nav a:after {
   margin-left: 15px;
-  content: url(../images/star.png);
+  content: url(/railsgirls-hn/images/star.png);
 }
 
 nav a:last-child: after {
@@ -203,7 +203,7 @@ footer a {
 
 .hero {
   padding: 20px 320px 20px 0;
-  background: url(../images/guides-hero.png) right 80px no-repeat;
+  background: url(/railsgirls-hn/images/guides-hero.png) right 80px no-repeat;
 }
 .highlight {
   margin-left: 40px;
@@ -219,15 +219,15 @@ i.icon-text-editor, i.icon-prompt, i.icon-browser {
   line-height: 50px;
 }
 i.icon-text-editor {
-  background-image: url("/images/icon-text-editor.png");
+  background-image: url("/railsgirls-hn/images/icon-text-editor.png");
 }
 
 i.icon-prompt{
-  background-image: url("/images/icon-prompt.png");
+  background-image: url("/railsgirls-hn/images/icon-prompt.png");
 }
 
 i.icon-browser {
-  background-image: url("/images/icon-browser.png");
+  background-image: url("/railsgirls-hn/images/icon-browser.png");
 }
 i.icon-small-text-editor, i.icon-small-prompt, i.icon-small-browser {
   background-position: 0 0;
@@ -239,13 +239,13 @@ i.icon-small-text-editor, i.icon-small-prompt, i.icon-small-browser {
   line-height: 20px;
 }
 i.icon-small-text-editor {
-  background-image: url("/images/icon-small-text-editor.png");
+  background-image: url("/railsgirls-hn/images/icon-small-text-editor.png");
 }
 i.icon-small-prompt{
-  background-image: url("/images/icon-small-prompt.png");
+  background-image: url("/railsgirls-hn/images/icon-small-prompt.png");
 }
 i.icon-small-browser {
-  background-image: url("/images/icon-small-browser.png");
+  background-image: url("/railsgirls-hn/images/icon-small-browser.png");
 }
 
 .os-specific {
