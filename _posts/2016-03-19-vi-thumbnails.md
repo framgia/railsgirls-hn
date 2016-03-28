@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: hanoi-201604
 title: Hướng dẫn tạo thumbnails với Carrierwave cho ứng dụng Rails Girls
 permalink: /vi/thumbnails
 ---
@@ -76,11 +76,103 @@ Ngay bây giờ, bạn hãy mở trình duyệt lên để thấy được thumb
 
 ## Những câu hỏi nâng cao
 
-### *1.* Dễ
-- Hiện thị ảnh thumbnail trong trang `idea#show`
+### *A.* Dễ
+Hiện thị ảnh thumbnail trong trang `idea#show`
+<div class="collapse" id="button-example-1">
+Mở tệp tin <code>app/views/ideas/show.html.erb</code> thay thế dòng sau
 
-### *2.* Bình thường
-- Định nghĩa thêm những version khác và sử dụng trong trang `idea#index`. Ví dụ: `version :small_thumb, from_version: :thumb`
+{% highlight ruby %}
+<%= image_tag(@idea.picture_url, :width => 600) if @idea.picture.present? %>
+{% endhighlight %}
 
-### *3.* Khó
-- Upload ảnh idea bằng carrierwave
+bằng dòng sau
+
+{% highlight ruby %}
+<%= image_tag(@idea.picture_url(:thumbnail)) if @idea.picture.present? %>
+{% endhighlight %}
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#button-example-1" aria-expanded="false" aria-controls="button-example-1">Code mẫu</button>
+
+### *B.* Bình thường
+Định nghĩa thêm những version khác và sử dụng trong trang `idea#index`. Ví dụ: `version :small_thumb, from_version: :thumb`
+<div class="collapse" id="button-example-2">
+Mở tệp tin <code>app/uploaders/picture_uploader.rb</code> thêm đoạn ngay bên dưới đoạn mã:
+
+{% highlight ruby %}
+version :thumb do
+  process :resize_to_fill => [50, 50]
+end
+{% endhighlight %}
+
+với đoạn mã
+
+{% highlight ruby %}
+version :small_thumb, from_version: :thumb do
+  process resize_to_fill: [20, 20]
+end
+{% endhighlight %}
+
+Sửa dòng sau trong <code>ideas#index.html.erb</code>
+
+{% highlight ruby %}
+<%= image_tag idea.picture_url(:thumb) if idea.picture? %>
+{% endhighlight %}
+
+bằng dòng
+
+{% highlight ruby %}
+<%= image_tag(@idea.picture_url(:small_thumb)) if @idea.picture.present? %>
+{% endhighlight %}
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#button-example-2" aria-expanded="false" aria-controls="button-example-2">Code mẫu</button>
+
+### *C.* Khó
+Lưu trữ ảnh trên dịch vụ [cloudinary.com](http://cloudinary.com/) sử dụng carrierwave và hiện thị lên trình duyệt trong trang <code>ideas#index</code>.
+<div class="collapse" id="button-example-3">
+Đăng ký một tài khoản trên website <a href="https://cloudinary.com/users/register/free">cloudinary.com</a>. Sau khi đăng ký, thực hiện đăng nhập, tải file cấu hình <a href="https://cloudinary.com/console/cloudinary.yml">tại đây</a> và lưu vào thư mục <code>config</code>. Chúng ta sẽ có tệp tin cấu hình theo đường dẫn
+
+{% highlight ruby %}
+config/cloudinary.yml
+{% endhighlight %}
+
+Mở tệp tin <code>Gemfile</code> thêm <code>gem "cloudinary"</code> ngay bên dưới <code>gem "carrierwave"</code>:
+
+{% highlight ruby %}
+gem "carrierwave"
+gem "cloudinary"
+{% endhighlight %}
+
+Sau đó thực hiện cài đặt gem mới bằng lệnh:
+
+{% highlight ruby %}
+bundler install
+{% endhighlight %}
+
+Mở tệp tin <code>uploaders/picture_uploader.rb</code>, comment các đoạn mã giống như sau:
+
+{% highlight ruby %}
+...
+# include CarrierWave::MiniMagick
+...
+# storage :file
+...
+# def store_dir
+#   "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+# end
+{% endhighlight %}
+
+Ngay bên dưới dòng:
+
+{% highlight ruby %}
+class PictureUploader < CarrierWave::Uploader::Base
+{% endhighlight %}
+
+thêm dòng sau
+
+{% highlight ruby %}
+include Cloudinary::CarrierWave
+{% endhighlight %}
+
+Vậy là xong, bây giờ bạn khởi động lại server và thử tải ảnh mới của một idea và kiểm tra trong trang index xem nhé.
+</div>
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#button-example-3" aria-expanded="false" aria-controls="button-example-3">Code mẫu</button>
