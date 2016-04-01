@@ -82,13 +82,10 @@ Trong `app/controllers/ideas_controller.rb` thêm vào action `show` các dòng 
 
 Mở tập tin `app/views/comments/_form.html.erb` và sau các dòng sau
 {% highlight ruby %}
- <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </div>
+<%= form_for(@comment) do |f| %>
 {% endhighlight %}
 
-Thêm vào dòng sau
+thêm vào dòng sau
 
 {% highlight ruby %}
 <%= f.hidden_field :idea_id %>
@@ -103,7 +100,7 @@ Và tiếp theo là xóa các dòng sau
 </div>
 {% endhighlight %}
 
-Vậy là đã hoàn thành. Bây giờ bạn có thể xem một idea mà bạn đã thêm vào ứng dụng của bạn trước đây và ở đó bạn sẽ thấy một biểu mẫu để thêm vào các comments mới cũng như là xóa các comments cũ.
+Vậy là đã hoàn thành. Bây giờ bạn có thể xem một `Idea` mà bạn đã thêm vào ứng dụng của bạn trước đây và ở đó bạn sẽ thấy một biểu mẫu để thêm vào các `Comments` mới cũng như là xóa các comments cũ.
 
 ### Những câu hỏi nâng cao
 
