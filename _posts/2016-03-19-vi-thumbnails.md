@@ -74,9 +74,9 @@ thành
 
 Ngay bây giờ, bạn hãy mở trình duyệt lên để thấy được thumbnail ảnh.
 
-## Những câu hỏi nâng cao
+# Những câu hỏi nâng cao
 
-### *A.* Dễ
+## *A* Dễ
 Hiện thị ảnh thumbnail trong trang `idea#show`
 <div class="collapse" id="button-example-1">
 Mở tệp tin <code>app/views/ideas/show.html.erb</code> thay thế dòng sau
@@ -93,7 +93,7 @@ bằng dòng sau
 </div>
 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#button-example-1" aria-expanded="false" aria-controls="button-example-1">Code mẫu</button>
 
-### *B.* Bình thường
+## *B* Bình thường
 Định nghĩa thêm những version khác và sử dụng trong trang `idea#index`. Ví dụ: `version :small_thumb, from_version: :thumb`
 <div class="collapse" id="button-example-2">
 Mở tệp tin <code>app/uploaders/picture_uploader.rb</code> thêm đoạn ngay bên dưới đoạn mã:
@@ -126,7 +126,7 @@ bằng dòng
 </div>
 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#button-example-2" aria-expanded="false" aria-controls="button-example-2">Code mẫu</button>
 
-### *C.* Khó
+## *C* Khó
 Lưu trữ ảnh trên dịch vụ [cloudinary.com](http://cloudinary.com/) sử dụng carrierwave và hiện thị lên trình duyệt trong trang <code>ideas#index</code>.
 <div class="collapse" id="button-example-3">
 Đăng ký một tài khoản trên website <a href="https://cloudinary.com/users/register/free">cloudinary.com</a>. Sau khi đăng ký, thực hiện đăng nhập, tải file cấu hình <a href="https://cloudinary.com/console/cloudinary.yml">tại đây</a> và lưu vào thư mục <code>config</code>. Chúng ta sẽ có tệp tin cấu hình theo đường dẫn

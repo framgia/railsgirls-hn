@@ -48,6 +48,8 @@ Bây giờ chúng ta sẽ thiết kế lại trang `Ideas` sao cho nhìn thật 
 Mở file `app/views/ideas/index.html.erb` trên trình soạn thảo và thay thế tất cả bằng đoạn code dưới đây
 
 {% highlight erb %}
+<p id="notice"><%= notice %></p>
+
 <h1>Listing ideas</h1>
 
 <% @ideas.in_groups_of(3) do |group| %>
@@ -89,6 +91,16 @@ Mở file `app/views/ideas/show.html.erb` trên trình soạn thảo và thay th
     </p>
   </div>
 </div>
+<h3>Comments</h3>
+<% @comments.each do |comment| %>
+  <div>
+    <strong><%= comment.user_name %></strong>
+    <br />
+    <p><%= comment.body %></p>
+    <p><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </div>
+<% end %>
+<%= render 'comments/form' %>
 {% endhighlight %}
 
 **Coach**: Giải thích về ý nghĩa của đoạn code trên. 
