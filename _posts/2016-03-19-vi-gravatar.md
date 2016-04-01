@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: hanoi-201604
 title: Hướng dẫn sử dụng gravatar cho ứng dụng Rails Girls
 permalink: /vi/gravatar
 ---
