@@ -50,7 +50,7 @@ và sửa nó thành
 {% endhighlight %}
 sau đó bạn có thể tiếp tục sửa thuộc tính `width` và xem sự thay đổi thế nào.  
 
-- Tiếp theo, hãy thêm phần code sau xuống dưới cùng file `app/assets/stylesheets/ideas.css.scss`:
+- Tiếp theo, hãy thêm phần code sau xuống dưới cùng file `app/assets/stylesheets/ideas.scss`:
 {% highlight css %}
 .container a:hover {
   color: #f55e55;
@@ -74,7 +74,7 @@ footer {
 rôi thử thêm vài thứ khác vào phần `footer` trong file `app/views/layouts/application.html.erb` xem thế nào, và điều chỉnh vị trí của nó cho phù hợp nhé.
 
 ## *4* Thêm thiết kế cho nút nhấn
-- Thêm đoạn code sau vào cuối file `app/assets/stylesheets/ideas.css.scss`:
+- Thêm đoạn code sau vào cuối file `app/assets/stylesheets/ideas.scss`:
 
 {% highlight css %}
 .container input[type="submit"] {
@@ -101,7 +101,7 @@ Chúng ta hãy cùng thử làm cho nút nhấn `Create Idea` nghiêng một gó
 
 <p>&nbsp;</p>
 <div class="collapse" id="css-transform-example">
-  <ul><li>Thêm đoạn code sau vào cuối file <code>app/assets/stylesheets/ideas.css.scss</code>:</li></ul>
+  <ul><li>Thêm đoạn code sau vào cuối file <code>app/assets/stylesheets/ideas.scss</code>:</li></ul>
   {% highlight css %}
   .container input[type="submit"] {
     -ms-transform: rotate(45deg);
