@@ -35,6 +35,8 @@ trong Terminal chạy:
 bundle
 {% endhighlight %}
 
+và nhớ khởi động lại server
+
 ## *2.* Tạo thumbnails khi ảnh được upload lên
 
 Mở `app/uploaders/picture_uploader.rb` và tìm dòng:
@@ -63,13 +65,13 @@ Những ảnh đã tải lên từ bây giờ đã thay đổi kích thước. T
 Thay dòng
 
 {% highlight ruby %}
-<td><%= idea.picture %></td>
+<%= image_tag idea.picture_url if idea.picture.present? %>
 {% endhighlight %}
 
 thành
 
 {% highlight ruby %}
-<td><%= image_tag idea.picture_url(:thumb) if idea.picture? %></td>
+<%= image_tag idea.picture_url(:thumb) if idea.picture? %>
 {% endhighlight %}
 
 Ngay bây giờ, bạn hãy mở trình duyệt lên để thấy được thumbnail ảnh.
@@ -77,7 +79,7 @@ Ngay bây giờ, bạn hãy mở trình duyệt lên để thấy được thumb
 # Những câu hỏi nâng cao
 
 ## *A* Dễ
-Hiện thị ảnh thumbnail trong trang `idea#show`
+Hiện thị ảnh thumbnail trong trang `app/views/ideas/show.html.erb`
 <div class="collapse" id="button-example-1">
 Mở tệp tin <code>app/views/ideas/show.html.erb</code> thay thế dòng sau
 
@@ -88,13 +90,13 @@ Mở tệp tin <code>app/views/ideas/show.html.erb</code> thay thế dòng sau
 bằng dòng sau
 
 {% highlight ruby %}
-<%= image_tag(@idea.picture_url(:thumbnail)) if @idea.picture.present? %>
+<%= image_tag(@idea.picture_url(:thumb)) if @idea.picture.present? %>
 {% endhighlight %}
 </div>
 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#button-example-1" aria-expanded="false" aria-controls="button-example-1">Code mẫu</button>
 
 ## *B* Bình thường
-Định nghĩa thêm những version khác và sử dụng trong trang `idea#index`. Ví dụ: `version :small_thumb, from_version: :thumb`
+Định nghĩa thêm những version khác và sử dụng trong trang `app/views/ideas/index.html.erb`. Ví dụ: `version :small_thumb, from_version: :thumb`
 <div class="collapse" id="button-example-2">
 Mở tệp tin <code>app/uploaders/picture_uploader.rb</code> thêm đoạn ngay bên dưới đoạn mã:
 
@@ -112,7 +114,7 @@ version :small_thumb, from_version: :thumb do
 end
 {% endhighlight %}
 
-Sửa dòng sau trong <code>ideas#index.html.erb</code>
+Sửa dòng sau trong <code>app/views/ideas/index.html.erb</code>
 
 {% highlight ruby %}
 <%= image_tag idea.picture_url(:thumb) if idea.picture? %>
@@ -127,7 +129,7 @@ bằng dòng
 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#button-example-2" aria-expanded="false" aria-controls="button-example-2">Code mẫu</button>
 
 ## *C* Khó
-Lưu trữ ảnh trên dịch vụ [cloudinary.com](http://cloudinary.com/) sử dụng carrierwave và hiện thị lên trình duyệt trong trang <code>ideas#index</code>.
+Lưu trữ ảnh trên dịch vụ [cloudinary.com](http://cloudinary.com/) sử dụng carrierwave và hiện thị lên trình duyệt trong trang <code>app/views/ideas/index.html.erb</code>.
 <div class="collapse" id="button-example-3">
 Đăng ký một tài khoản trên website <a href="https://cloudinary.com/users/register/free">cloudinary.com</a>. Sau khi đăng ký, thực hiện đăng nhập, tải file cấu hình <a href="https://cloudinary.com/console/cloudinary.yml">tại đây</a> và lưu vào thư mục <code>config</code>. Chúng ta sẽ có tệp tin cấu hình theo đường dẫn
 
@@ -145,7 +147,7 @@ gem "cloudinary"
 Sau đó thực hiện cài đặt gem mới bằng lệnh:
 
 {% highlight ruby %}
-bundler install
+bundle íntall
 {% endhighlight %}
 
 Mở tệp tin <code>uploaders/picture_uploader.rb</code>, comment các đoạn mã giống như sau:
@@ -173,6 +175,6 @@ thêm dòng sau
 include Cloudinary::CarrierWave
 {% endhighlight %}
 
-Vậy là xong, bây giờ bạn khởi động lại server và thử tải ảnh mới của một idea và kiểm tra trong trang index xem nhé.
+Vậy là xong, bây giờ bạn khởi động lại server và thử tải ảnh mới của một `Idea` và kiểm tra trong trang `/ideas/index` xem nhé.
 </div>
 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#button-example-3" aria-expanded="false" aria-controls="button-example-3">Code mẫu</button>
