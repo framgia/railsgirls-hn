@@ -168,4 +168,4 @@ vào phía trên dòng
 {% highlight erb %}
 <%= csrf_meta_tags %>
 {% endhighlight %}
-- Tham khảo `collapse` cũng như các thành phần khác của Bootstrap Javascript tại [đây](http://getbootstrap.com/2.3.2/javascript.html#collapse)
+- Tham khảo `collapse` cũng như các thành phần khác của Bootstrap Javascript tại [đây](http://getbootstrap.com/javascript/#collapse)
