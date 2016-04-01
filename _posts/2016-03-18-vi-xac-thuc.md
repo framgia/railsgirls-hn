@@ -28,7 +28,7 @@ bundle install
 
 ## *2* Thiết lập devise cho ứng dụng của bạn
 
-Chạy lện sau trên terminal.
+Chạy lệnh sau trên terminal
 
 {% highlight ruby %}
 rails g devise:install
@@ -124,7 +124,8 @@ protect_from_forgery with: :exception
 {% endhighlight %}
 
 Mở trình duyệt của bạn và hãy thử đăng nhập, đăng xuất.
-** Coach: ** Nói về các helpers`user_signed_in?` và `current_user`. Tại sao chúng lại hữu ích?
+
+**Coach**: Nói về các helpers`user_signed_in?` và `current_user`. Tại sao chúng lại hữu ích?
 
 # Những câu hỏi nâng cao
 
@@ -147,8 +148,8 @@ config.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {
 address:              'smtp.gmail.com',
 port:                 587,
-user_name:            '<username>',
-password:             '<password>',
+user_name:            '<gmail username>',
+password:             '<gmail password>',
 authentication:       'plain',
 enable_starttls_auto: true  }
 {% endhighlight %}
@@ -156,13 +157,21 @@ enable_starttls_auto: true  }
 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#mail-example" aria-expanded="false" aria-controls="mail-example">Code mẫu</button>
 
 ## *B* Bình thường
+
 - Cho phép user sửa đổi thông tin cá nhân của họ (tên, số điện thoại) (bước này gắn liền với bước 1 trong phần dễ)
+
+  Tạo một controller tên là `UsersController` bằng dòng lệnh
+
+{% highlight sh %}
+rails generate scaffold_controller Users
+{% endhighlight %}
+
 <div class="collapse" id="edit_field-example">
 Mở tệp tin <code>config/routes.rb</code> và thêm vào
 {% highlight ruby %}
 resource :user, only: [:edit, :update]
 {% endhighlight %}
-Trong thư mục <code>app/controllers</code> thêm một tệp tin với tên là <code>users_controller</code> với nội dung như sau
+Thay toàn bộ nội dung file<code>app/controllers/users_controller.rb</code> với nội dung như sau
 {% highlight ruby %}
 class UsersController < ApplicationController
   def edit
@@ -184,7 +193,7 @@ class UsersController < ApplicationController
   end
 end
 {% endhighlight %}
-Trong <code>app/views</code> tạo một file mới có tên <code>users/edit.html.erb</code> với nội dung sau
+Thay toàn bộ nội dung file <code>app/views/users/edit.html.erb</code> với nội dung sau
 {% highlight ruby %}
 <h1>Editing Profile</h1>
 <%= form_for @user do |f| %>
@@ -213,12 +222,22 @@ Trong <code>app/views</code> tạo một file mới có tên <code>users/edit.ht
   </div>
 <% end %>
 {% endhighlight %}
-Mở tệp tin <code>application/layout.html.erb</code> và thay đổi từ dòng 30-32 thành những dòng sau:
-{% highlight ruby %}
+Mở tệp tin <code>app/views/layouts/application.html.erb</code> và thay đổi các dòng 
+
+{% highlight erb %}
+Logged in as <strong><%= current_user.email %></strong>.
+<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+{% endhighlight %}
+
+thành những dòng sau:
+
+{% highlight erb %}
 Logged in as <strong><%= current_user.user_name || current_user.email %></strong>.
 <%= link_to 'Edit Password', edit_user_registration_path, :class => 'navbar-link' %> |
 <%= link_to 'Edit Profile', edit_user_path, :class => 'navbar-link' %> |
 {% endhighlight %}
+
+Bây giờ hãy thử khởi động lại server và duyệt tới trang <code>http://localhost:3000/user/edit</code> xem sao?
 </div>
 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#edit_field-example" aria-expanded="false" aria-controls="edit_field-example">Code mẫu</button>
 
