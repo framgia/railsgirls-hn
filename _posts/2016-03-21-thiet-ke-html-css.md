@@ -162,7 +162,7 @@ Chúng ta hãy cùng thử làm cho nút nhấn `Create Idea` nghiêng một gó
 
 - Mở file `app/views/layouts/application.html.erb` và thêm dòng
 {% highlight erb %}
-<link rel="stylesheet" href="//framgia.github.io/railsgirls-hn/js/bootstrap.min.js">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 {% endhighlight %}
 vào phía trên dòng
 {% highlight erb %}
