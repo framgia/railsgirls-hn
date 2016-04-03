@@ -117,7 +117,7 @@ end
 Sửa dòng sau trong <code>app/views/ideas/index.html.erb</code>
 
 {% highlight ruby %}
-<%= image_tag idea.picture_url(:thumb) if idea.picture? %>
+<%= image_tag @idea.picture_url(:thumb) if idea.picture? %>
 {% endhighlight %}
 
 bằng dòng
@@ -147,7 +147,7 @@ gem "cloudinary"
 Sau đó thực hiện cài đặt gem mới bằng lệnh:
 
 {% highlight ruby %}
-bundle íntall
+bundle install
 {% endhighlight %}
 
 Mở tệp tin <code>uploaders/picture_uploader.rb</code>, comment các đoạn mã giống như sau:
