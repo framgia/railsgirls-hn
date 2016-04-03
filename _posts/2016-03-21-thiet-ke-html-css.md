@@ -32,9 +32,9 @@ rồi làm mới lại trang và kiểm tra sự thay đổi. Bạn có thể đ
 
 **Coach**: giải thích về 4 trạng thái của một hyper-link.
 
-## *2* Thiết kế table
+## *2* Thiết kế table, ảnh và link
 - Theo như phần trước, để đơn giản chúng ta cũng sẽ sử dụng Twitter [Bootstrap](http://getbootstrap.com/) cho việc trang trí `table`  
-Hãy tìm dòng dưới đây trong file `app/views/ideas/index.html.erb`
+Hãy tìm dòng dưới đây trong file `app/views/comments/index.html.erb`
 
 {% highlight html %}
 <table>
@@ -43,6 +43,7 @@ và sửa nó thành
 {% highlight html %}
 <table class="table">
 {% endhighlight %}
+Thử F5 lại trang `/comments` xem nhé.
 
 - Sửa lại kích thước của ảnh với
 {% highlight erb %}
