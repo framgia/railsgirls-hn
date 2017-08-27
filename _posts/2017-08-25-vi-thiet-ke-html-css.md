@@ -5,7 +5,7 @@ permalink: /vi/thiet-ke-html-css
 ---
 # Thêm thiết kế cho ứng dụng với HTML & CSS
 
-## *1*.  Thiết kế header
+## *1.*  Thiết kế header
 
 Thêm phần code sau vào dưới cùng của file `app/assets/stylesheets/application.css`:
 
@@ -32,7 +32,7 @@ Sau đó thêm tiếp phần code dưới đây vào dưới cùng file:
 
 **Coach**: giải thích về 4 trạng thái của một link.
 
-## *2*.  Thiết kế table, ảnh và link
+## *2.*  Thiết kế table, ảnh và link
  Để đơn giản chúng ta sẽ sử dụng  twitter [Bootstrap](http://getbootstrap.com/) cho việc trang trí `table`
 Hãy tìm dòng dưới đây trong file `app/views/ideas/index.html.erb`
 
@@ -59,7 +59,7 @@ Tiếp theo, hãy thêm phần code sau xuống dưới cùng file `app/assets/s
 {% endhighlight %}
 Ngoài ra, bạn có thể thử vài kiểu nữa với `background-image`. Hãy tham khảo tại [http://subtlepatterns.com/](http://subtlepatterns.com/) nhé.
 
-## *3*.  Thêm thiết kế cho footer
+## *3.*  Thêm thiết kế cho footer
 Thêm đoạn code sau vào dưới cùng của file `app/assets/stylesheets/application.css`:
 {% highlight css %}
 footer {
@@ -69,7 +69,7 @@ footer {
 {% endhighlight %}
 rôi thử thêm vài thứ khác vào phần `footer` trong file `app/views/layouts/application.html.erb` xem thế nào, và điều chỉnh vị trí của nó cho phù hợp nhé.
 
-## *4*.  Thêm thiết kế cho nút nhấn
+## *4.*  Thêm thiết kế cho nút nhấn
 Thêm đoạn code sau vào cuối file `app/assets/stylesheets/ideas.scss`:
 
 {% highlight css %}
@@ -88,7 +88,7 @@ rồi mở đường dẫn [http://localhost:3000/ideas/new](http://localhost:30
 
 # Tiếp theo?
 
-## *A*. CSS Transform
+## *A* CSS Transform
 
 Chúng ta hãy cùng thử làm cho nút nhấn `Create Idea` nghiêng một góc 45 độ như button dưới đây.
 **Coach**: Nói thêm một chút về sức mạnh của CSS nói chung và CSS3 nói riêng, và gợi ý về cách để làm một nút nhấn nghiêng góc
@@ -112,7 +112,7 @@ Chúng ta hãy cùng thử làm cho nút nhấn `Create Idea` nghiêng một gó
   Code mẫu
 </button>
 
-## *B*. Thiết kế timeline với Bootstrap
+## *B* Thiết kế timeline với Bootstrap
 
 ![railsgirls-hn-2016-04-timeline]({{ site.baseurl }}/images/railsgirls-hn-201604.jpg)
 **Coach**: nói lại một chút về giao diện grid của Bootstrap và mô tả một giao diện timeline cho `Comment` của `Idea`
@@ -151,7 +151,7 @@ Chúng ta hãy cùng thử làm cho nút nhấn `Create Idea` nghiêng một gó
 
 - Ngoài ra các bạn có thể áp dụng grid vào form `Comment` để đưa form này vào giao diện timeline của mình nhé
 
-## *C*. Các thành phần JavaScript của Bootstrap: collapse
+## *C* Các thành phần JavaScript của Bootstrap: collapse
 
 **Coach**: nói thêm về bootstrap và phần hiệu ứng mà sử dụng CSS sẽ khó khăn nhưng với JavaScript thì lại dễ dàng hơn hẳn.
 Để chuẩn bị, chúng ta có thể:

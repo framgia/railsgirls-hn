@@ -11,7 +11,7 @@ permalink: /vi/bootstrap
 App của bạn đã có thể chạy tốt, nhưng nhìn nó vẫn khá thô sơ. Chúng ta sẽ đưa một vài thiết kế vào cho bắt mắt.
 **Coach**: Nói sơ qua về Bootstrap
 
-## *1* Thay đổi layout của ứng dụng
+## *1.* Thay đổi layout của ứng dụng
 Mở file `app/assets/stylesheets/application.css` và thay dòng
 
 {% highlight css %}
@@ -27,7 +27,7 @@ body { padding-top: 60px; }
 Cuối cùng xoá file `app/assets/stylesheets/scaffolds.scss` đi bởi chúng ta không thực sự cần đến thiết kế mặc định của Rails.
 Giờ refresh trang web của bạn tại [http://localhost:3000/ideas](http://localhost:3000/ideas). Bạn vẫn thấy chưa có nhiều thay đổi, tuy nhiên các bước trên là sự chuẩn bị cần thiết cho những bước tiếp theo.
 
-## *2* Điều chỉnh lại menu điều hướng
+## *2.* Điều chỉnh lại menu điều hướng
 Chú ý rằng “idea” là đối tượng quan trọng nhất trong app của bạn, nên chúng ta sẽ tạo một nút “New Idea” trên thanh điều hướng để bạn luôn luôn có thể thấy nó.
 
 Mở file `app/views/layouts/application.html.erb`, và dưới dòng
@@ -42,7 +42,7 @@ hãy thêm dòng
 <li ><%= link_to 'New Idea', new_idea_path %></li>
 {% endhighlight %}
 
-## *3* Thiết kế trang danh sách Idea
+## *3.* Thiết kế trang danh sách Idea
 Bây giờ chúng ta sẽ thiết kế lại trang `Ideas` sao cho nhìn thật pro. Để làm được điều đó, chúng ta sẽ thay thế layout dạng `table` sang sử dụng layout với `div`
 
 **Coach**: Nói một chút về `table` và `div`
@@ -200,7 +200,7 @@ Hãy giải thích kỹ hơn về những kiểu form này.
 ## *C* Responsive design
 **Coach**: Giải thích về thuật ngữ `responsive design` và Bootstrap đã được tạo ra để đáp ứng phương pháp này như thế nào. Trang web không những cần chạy tốt trên trình duyệt của học viên mà còn phải chạy tốt trên nhiều thiết bị như màn hình lớn, mobile ...
 
-# Ngoài ra, chúng ta có thể phát triển thêm gì nữa?
+## Ngoài ra, chúng ta có thể phát triển thêm gì nữa?
 - Tạo lại form theo ý thích
 - Thay đổi thiết kế trang theo ý thích
 - Tìm hiểu các tài liệu hướng dẫn khác để học thêm về Rails
