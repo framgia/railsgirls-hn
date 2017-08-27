@@ -11,7 +11,7 @@ Chúng ta sẽ tiến hành bổ sung thêm chức năng comment cho ideas trong
 
 Hướng dẫn cho việc cài đặt Rails và xây dựng ứng dụng ideas chúng ta có thể tìm thấy [tại đây](/app)
 
-### *1.* Tạo scaffold cho comment
+## *1.* Tạo scaffold cho comment
 
 Tạo một scaffold cho comment, với tên người comment, body của comment (nội dung comment) và tham chiếu (liên kết) đến bảng ideas (`idea_id`)
 
@@ -25,7 +25,7 @@ Lệnh trên sẽ tạo ra một tập tin migration và báo cho cơ sở dữ 
 rails db:migrate
 {% endhighlight %}
 
-### *2.* Thêm các quan hệ vào các models
+## *2.* Thêm các quan hệ vào các models
 
 Bạn cần phải chắc chắn một điều rằng Rails biết được mỗi quan hệ giữa các đối tượng với nhau (ở đây là **ideas** và **comment**). Vì một idea có thể có nhiều comments nên chúng ta cần đảm bảo rằng model `idea` biết được điều đó. Mở tập tin `app/models/idea.rb` và sau dòng
 
@@ -50,7 +50,7 @@ thêm vào
 belongs_to :idea
 {% endhighlight %}
 
-### *3.* Hiển thị form comment và các comment đã tồn tại
+## *3.* Hiển thị form comment và các comment đã tồn tại
 
 Mở tập tin `app/views/ideas/show.html.erb` và sau `image_tag`
 
@@ -105,9 +105,9 @@ và tiếp theo là xóa các dòng sau
 
 Vậy là đã hoàn thành. Bây giờ bạn có thể xem một `Idea` mà bạn đã thêm vào ứng dụng của bạn trước đây và ở đó bạn sẽ thấy một form để thêm vào các `Comments` mới cũng như là xóa các comments cũ.
 
-### Những câu hỏi nâng cao
+# Những câu hỏi nâng cao
 
-#### *1.* Dễ
+## *A* Dễ
 
 - Di chuyển đến trang `idea/show` sau khi tạo mới một bình luận (comment)
 <div class="collapse" id="button-example">
@@ -161,7 +161,7 @@ rails db:migrate
 </div>
 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#reply-example" aria-expanded="false" aria-controls="reply-example">Code mẫu</button>
 
-#### *2.* Bình thường
+## *B* Bình thường
 - Cho phép bình luận bằng hình ảnh
 <div class="collapse" id="image_comment-example">
 Mở tệp tin <code>app/models/comment.rb</code> và thêm vào dòng sau
@@ -242,6 +242,6 @@ end
 </div>
 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#error-example" aria-expanded="false" aria-controls="error-example">Code mẫu</button>
 
-#### *3.* Khó
+## *C* Khó
 - Cho phép trả lời các comment
 - Thực thi chức năng like cho một comment
