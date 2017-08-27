@@ -18,25 +18,25 @@ rails g scaffold comment user_name:string body:text idea_id:integer
 {% endhighlight %}
 This will create a migration file that lets your database know about the new comments table. Run the migrations using
 {% highlight sh %}
-rake db:migrate
+rails db:migrate
 {% endhighlight %}
 
 ## *2.*Add relations to models
 
 You need to make sure that Rails knows the relation between objects (ideas and comments).
 As one idea can have many comments we need to make sure the idea model knows that.
-Open app/models/idea.rb and after the row
+Open app/models/idea.rb and below the row
 {% highlight ruby %}
-class Idea < ActiveRecord::Base
+class Idea < ApplicationRecord
 {% endhighlight %}
 add
 {% highlight ruby %}
 has_many :comments
 {% endhighlight %}
 
-The comment also has to know that it belongs to an idea. So open `app/models/comment.rb` and after
+The comment also has to know that it belongs to an idea. So open `app/models/comment.rb` and below
 {% highlight ruby %}
-class Comment < ActiveRecord::Base
+class Comment < ApplicationRecord
 {% endhighlight %}
 
 add the row
@@ -57,12 +57,12 @@ add
 <% @comments.each do |comment| %>
   <div>
     <strong><%= comment.user_name %></strong>
-    <br />
+    <br>
     <p><%= comment.body %></p>
     <p><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
   </div>
 <% end %>
-<%= render 'comments/form' %>
+<%= render partial: 'comments/form', locals: { comment: @comment } %>
 {% endhighlight %}
 
 In `app/controllers/ideas_controller.rb` add to the show action
@@ -74,7 +74,7 @@ In `app/controllers/ideas_controller.rb` add to the show action
 Open `app/views/comments/_form.html.erb` and after
 {% highlight erb %}
   <div class="field">
-    <%= f.label :body %><br />
+    <%= f.label :body %><br>
     <%= f.text_area :body %>
   </div>
 {% endhighlight %}
