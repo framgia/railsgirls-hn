@@ -1,7 +1,7 @@
 ---
 layout: hanoi-201604
 title: Hướng dẫn sử dụng gravatar cho ứng dụng Rails Girls
-permalink: /vi/gravatar
+permalink: /vi/2016/gravatar
 ---
 
 # Thêm Gravatar vào ứng dụng của bạn

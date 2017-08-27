@@ -1,14 +1,14 @@
 ---
 layout: hanoi-201604
 title: UI hiện đại với Bootstrap
-permalink: /vi/bootstrap
+permalink: /vi/2016/bootstrap
 ---
 
 # UI hiện đại với Bootstrap
 
 *Được viết bởi Alex Liao, [@alexliao](http://bannka.com/alex). Dịch và chỉnh sửa bởi [@framgia](https://github.com/framgia)*
 
-App của bạn đã có thể chạy tốt, nhưng nhìn nó vẫn khá thô sơ. Chúng ta sẽ đưa một vài thiết kế vào cho bắt mắt.  
+App của bạn đã có thể chạy tốt, nhưng nhìn nó vẫn khá thô sơ. Chúng ta sẽ đưa một vài thiết kế vào cho bắt mắt.
 **Coach**: Nói sơ qua về Bootstrap
 
 ## *1* Thay đổi layout của toàn bộ ứng dụng
@@ -24,11 +24,11 @@ bằng dòng
 body { padding-top: 60px; }
 {% endhighlight %}
 
-Cuối cùng xoá file `app/assets/stylesheets/scaffolds.scss` đi bởi chúng ta không thực sự cần đến thiết kế mặc định của Rails.  
+Cuối cùng xoá file `app/assets/stylesheets/scaffolds.scss` đi bởi chúng ta không thực sự cần đến thiết kế mặc định của Rails.
 Giờ refresh trang web của bạn tại [http://localhost:3000/ideas](http://localhost:3000/ideas). Bạn vẫn thấy chưa có nhiều thay đổi, tuy nhiên các bước trên là sự chuẩn bị cần thiết cho những bước tiếp theo.
 
-## *2* Điều chỉnh lại menu điều hướng 
-Chú ý rằng `idea` là đối tượng quan trọng nhất trong app của bạn, nên chúng ta sẽ tạo một nút `New Idea` trên thanh điều hướng để bạn luôn luôn có thể thấy nó.  
+## *2* Điều chỉnh lại menu điều hướng
+Chú ý rằng `idea` là đối tượng quan trọng nhất trong app của bạn, nên chúng ta sẽ tạo một nút `New Idea` trên thanh điều hướng để bạn luôn luôn có thể thấy nó.
 Mở file `app/views/layouts/application.html.erb`, và dưới dòng
 
 {% highlight html %}
@@ -42,8 +42,8 @@ hãy thêm dòng
 {% endhighlight %}
 
 ## *3* Thiết kế trang danh sách Idea
-Bây giờ chúng ta sẽ thiết kế lại trang `Ideas` sao cho nhìn thật pro. Để làm được điều đó, chúng ta sẽ thay thế layout dạng `table` sang sử dụng layout với `div`  
-**Coach**: Nói một chút về `table` và `div`  
+Bây giờ chúng ta sẽ thiết kế lại trang `Ideas` sao cho nhìn thật pro. Để làm được điều đó, chúng ta sẽ thay thế layout dạng `table` sang sử dụng layout với `div`
+**Coach**: Nói một chút về `table` và `div`
 
 Mở file `app/views/ideas/index.html.erb` trên trình soạn thảo và thay thế tất cả bằng đoạn code dưới đây
 
@@ -67,10 +67,10 @@ Mở file `app/views/ideas/index.html.erb` trên trình soạn thảo và thay t
 
 **Coach**: Giải thích một chút về ý nghĩa của đoạn code trên, và nói thêm về hệ thống layout 12 grids của Bootstrap
 
-Giờ hãy F5 trang của bạn xem nào! Bạn sẽ thấy trang web đã thay đổi hẳn giao diện. Nhấn vào nút `New Idea`, và tạo thêm nhiều `idea` với những nội dung thật và vài bức ảnh đẹp - trang web của bạn sẽ nhìn còn đẹp hơn nữa khi có nhiều nội dung. Đây cũng là một nguyên tắc trong thiết kế web: Nội dung là cách tốt nhất để trang hoàng cho website của bạn.  
+Giờ hãy F5 trang của bạn xem nào! Bạn sẽ thấy trang web đã thay đổi hẳn giao diện. Nhấn vào nút `New Idea`, và tạo thêm nhiều `idea` với những nội dung thật và vài bức ảnh đẹp - trang web của bạn sẽ nhìn còn đẹp hơn nữa khi có nhiều nội dung. Đây cũng là một nguyên tắc trong thiết kế web: Nội dung là cách tốt nhất để trang hoàng cho website của bạn.
 
 ## *4* Thiết kế trang chi tiết Idea
-Nhấn vào đề mục của một `idea`, bạn sẽ được điều hướng tới trang chi tiết `Idea`. Bạn có thể thấy nó vẫn giữ giao diện nguyên bản được sinh ra mặc định bởi Rails, bây giờ hãy làm cho nó trở nên đẹp hơn nhé.  
+Nhấn vào đề mục của một `idea`, bạn sẽ được điều hướng tới trang chi tiết `Idea`. Bạn có thể thấy nó vẫn giữ giao diện nguyên bản được sinh ra mặc định bởi Rails, bây giờ hãy làm cho nó trở nên đẹp hơn nhé.
 Mở file `app/views/ideas/show.html.erb` trên trình soạn thảo và thay thế toàn bộ bằng đoạn code dưới đây
 
 {% highlight erb %}
@@ -103,32 +103,32 @@ Mở file `app/views/ideas/show.html.erb` trên trình soạn thảo và thay th
 <%= render 'comments/form' %>
 {% endhighlight %}
 
-**Coach**: Giải thích về ý nghĩa của đoạn code trên. 
+**Coach**: Giải thích về ý nghĩa của đoạn code trên.
 
 # Tiếp theo là gì?
 
-Sau 4 phần trên, các bạn đã có thể hiểu qua công việc thiết kế trang web với HTML & CSS, đồng thời có cái nhìn cơ bản về `Bootstrap`. Chúng ta sẽ đi sâu hơn một chút về Bootstrap ở phần tiếp theo nhé.  
+Sau 4 phần trên, các bạn đã có thể hiểu qua công việc thiết kế trang web với HTML & CSS, đồng thời có cái nhìn cơ bản về `Bootstrap`. Chúng ta sẽ đi sâu hơn một chút về Bootstrap ở phần tiếp theo nhé.
 
-## *A* Thiết kế các nút nhấn 
+## *A* Thiết kế các nút nhấn
 **Coach**: Đưa ra một vài gợi ý về thiết kế các nút nhấn, biến một đường link trông giống như nút, và giải thích làm thế nào chúng ta có thể với `Bootstrap`
 
 <div class="collapse" id="button-example">
   Mở file <code>app/views/ideas/show.html.erb</code> và đổi
-  
+
   {% highlight erb %}
   <%= link_to 'Edit', edit_idea_path(@idea) %> |
   <%= link_to 'Destroy', @idea, data: { confirm: 'Are you sure?' }, method: :delete %> |
   <%= link_to 'Back', ideas_path %>
   {% endhighlight %}
-  
+
   thành
-  
+
   {% highlight erb %}
   <%= link_to 'Edit', edit_idea_path(@idea), class: "btn btn-warning" %> |
   <%= link_to 'Destroy', @idea, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger" %> |
   <%= link_to 'Back', ideas_path, class: "btn btn-info" %>
   {% endhighlight %}
-  
+
   OK, tiếp tục F5 trang web của bạn xem nào. Tata...bạn có nhận ra sự thay đổi?
 </div>
 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#button-example" aria-expanded="false" aria-controls="button-example">
@@ -144,23 +144,23 @@ Sau 4 phần trên, các bạn đã có thể hiểu qua công việc thiết k�
   <li>Form horizontal</li>
 </ul>
 
-Hãy giải thích kỹ hơn về những kiểu form này. 
+Hãy giải thích kỹ hơn về những kiểu form này.
 
 <div class="collapse" id="form-example">
   Mở file <code>app/views/ideas/_form.html.erb</code> và thay đổi dòng
-  
+
   {% highlight erb %}
   <%= form_for @idea, html: {multipart: true} do |f| %>
   {% endhighlight %}
-  
+
   thành
-  
+
   {% highlight erb %}
   <%= form_for @idea, html: {multipart: true, class: "form-horizontal"} do |f| %>
   {% endhighlight %}
-  
+
   và thay toàn bộ các đoạn code <code>&lt;div class="field"&gt;</code> ~ <code>&lt;div class="actions"&gt;</code> thành
-  
+
   {% highlight erb %}
   <div class="form-group">
     <%= f.label :name, class: "col-sm-2 control-label" %>
@@ -186,7 +186,7 @@ Hãy giải thích kỹ hơn về những kiểu form này.
     </div>
   </div>
   {% endhighlight %}
-  
+
   Trở lại và F5 trang web của bạn, bạn đã thấy gì?
 </div>
 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#form-example" aria-expanded="false" aria-controls="form-example">
