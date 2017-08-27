@@ -1,7 +1,7 @@
 ---
 layout: hanoi-201604
 title: Hướng dẫn tạo thumbnails với Carrierwave cho ứng dụng Rails Girls
-permalink: /vi/thumbnails
+permalink: /vi/2016/thumbnails
 ---
 
 # Tạo thumbnails với Carrierwave

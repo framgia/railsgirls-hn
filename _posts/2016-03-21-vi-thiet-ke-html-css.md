@@ -1,7 +1,7 @@
 ---
 layout: hanoi-201604
 title: Thêm thiết kế cho ứng dụng với HTML & CSS
-permalink: /vi/thiet-ke-html-css
+permalink: /vi/2016/thiet-ke-html-css
 ---
 # Thêm thiết kế cho ứng dụng với HTML & CSS
 
@@ -16,7 +16,7 @@ permalink: /vi/thiet-ke-html-css
 }
 {% endhighlight %}
 
-rồi làm mới lại trang và kiểm tra sự thay đổi. Bạn có thể đổi màu sắc và font của `header` nữa, hãy vào trang [http://color.uisdc.com/](http://color.uisdc.com/) tham khảo xem nhé.  
+rồi làm mới lại trang và kiểm tra sự thay đổi. Bạn có thể đổi màu sắc và font của `header` nữa, hãy vào trang [http://color.uisdc.com/](http://color.uisdc.com/) tham khảo xem nhé.
 **Coach**: Nói về thuộc tính `display`, _inline_ và _block_ của phần tử trong trang.
 
 - Sau đó thêm tiếp phần code dưới đây vào dưới cùng file `app/assets/stylesheets/application.css`:
@@ -33,7 +33,7 @@ rồi làm mới lại trang và kiểm tra sự thay đổi. Bạn có thể đ
 **Coach**: giải thích về 4 trạng thái của một hyper-link.
 
 ## *2* Thiết kế table, ảnh và link
-- Theo như phần trước, để đơn giản chúng ta cũng sẽ sử dụng Twitter [Bootstrap](http://getbootstrap.com/) cho việc trang trí `table`  
+- Theo như phần trước, để đơn giản chúng ta cũng sẽ sử dụng Twitter [Bootstrap](http://getbootstrap.com/) cho việc trang trí `table`
 Hãy tìm dòng dưới đây trong file `app/views/comments/index.html.erb`
 
 {% highlight html %}
@@ -49,7 +49,7 @@ Thử F5 lại trang `/comments` xem nhé.
 {% highlight erb %}
 <%= image_tag(idea.picture_url, width: 600) if idea.picture.present? %>
 {% endhighlight %}
-sau đó bạn có thể tiếp tục sửa thuộc tính `width` và xem sự thay đổi thế nào.  
+sau đó bạn có thể tiếp tục sửa thuộc tính `width` và xem sự thay đổi thế nào.
 
 - Tiếp theo, hãy thêm phần code sau xuống dưới cùng file `app/assets/stylesheets/ideas.scss`:
 {% highlight css %}
@@ -59,7 +59,7 @@ sau đó bạn có thể tiếp tục sửa thuộc tính `width` và xem sự t
   background-color: rgba(255, 255, 255, 0);
 }
 {% endhighlight %}
-Bạn có nhận ra thay đổi này không?  
+Bạn có nhận ra thay đổi này không?
 **Coach**: giải thích thêm về thuộc tính `background`
 
 - Ngoài ra, bạn có thể thử vài kiểu nữa với `background-image`. Hãy tham khảo tại [http://subtlepatterns.com/](http://subtlepatterns.com/) nhé.
@@ -95,10 +95,10 @@ rồi mở đường dẫn [http://localhost:3000/ideas/new](http://localhost:30
 
 ## *A* CSS Transform
 
-Chúng ta hãy cùng thử làm cho nút nhấn `Create Idea` nghiêng một góc 45 độ như button dưới đây.  
+Chúng ta hãy cùng thử làm cho nút nhấn `Create Idea` nghiêng một góc 45 độ như button dưới đây.
 **Coach**: Nói thêm một chút về sức mạnh của CSS nói chung và CSS3 nói riêng, và gợi ý về cách để làm một nút nhấn nghiêng góc
 
-- Code mẫu dưới đây có thể giúp các bạn làm được nút nhấn như thế này, nhưng thử tìm hiểu tại [W3School](http://www.w3schools.com/cssref/css3_pr_transform.asp) xem sao đã nào.  
+- Code mẫu dưới đây có thể giúp các bạn làm được nút nhấn như thế này, nhưng thử tìm hiểu tại [W3School](http://www.w3schools.com/cssref/css3_pr_transform.asp) xem sao đã nào.
 
 <p>&nbsp;</p>
 <div class="collapse" id="css-transform-example">
@@ -119,10 +119,10 @@ Chúng ta hãy cùng thử làm cho nút nhấn `Create Idea` nghiêng một gó
 
 ## *B* Thiết kế timeline với Bootstrap
 
-![railsgirls-hn-2016-04-timeline]({{ site.baseurl }}/images/railsgirls-hn-201604.jpg)  
-**Coach**: nói lại một chút về giao diện grid của Bootstrap và mô tả một giao diện timeline cho `Comment` của `Idea`  
+![railsgirls-hn-2016-04-timeline]({{ site.baseurl }}/images/railsgirls-hn-201604.jpg)
+**Coach**: nói lại một chút về giao diện grid của Bootstrap và mô tả một giao diện timeline cho `Comment` của `Idea`
 
-- Các bạn có thể sửa đổi giao diện thành như trên theo code dưới đây, nhưng trước tiên hãy thử tự làm xem sao.  
+- Các bạn có thể sửa đổi giao diện thành như trên theo code dưới đây, nhưng trước tiên hãy thử tự làm xem sao.
 
 <div class="collapse" id="timeline-example">
   <ul><li>Mở file <code>app/views/ideas/show.html.erb</code> và thay đoạn code:</li></ul>
@@ -156,9 +156,9 @@ Chúng ta hãy cùng thử làm cho nút nhấn `Create Idea` nghiêng một gó
 
 - Ngoài ra các bạn có thể áp dụng grid vào form `Comment` để đưa form này vào giao diện timeline của mình nhé
 
-## *C* Các thành phần JavaScript của Bootstrap: collapse 
- 
-**Coach**: nói thêm về bootstrap và phần hiệu ứng mà sử dụng CSS sẽ khó khăn nhưng với JavaScript thì lại dễ dàng hơn hẳn.  
+## *C* Các thành phần JavaScript của Bootstrap: collapse
+
+**Coach**: nói thêm về bootstrap và phần hiệu ứng mà sử dụng CSS sẽ khó khăn nhưng với JavaScript thì lại dễ dàng hơn hẳn.
 Để chuẩn bị, chúng ta có thể:
 
 - Mở file `app/views/layouts/application.html.erb` và thêm dòng

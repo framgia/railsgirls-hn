@@ -1,7 +1,7 @@
 ---
 layout: hanoi-201604
 title: Hướng dẫn thêm tính năng comment cho ứng dụng Rails Girls
-permalink: /vi/binh-luan
+permalink: /vi/2016/binh-luan
 ---
 
 # Thêm tính năng Comment cho ứng dụng Rails girl

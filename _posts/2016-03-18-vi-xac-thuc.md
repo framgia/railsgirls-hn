@@ -1,7 +1,7 @@
 ---
 layout: hanoi-201604
 title: Thêm tính năng xác thực (authentication) với Devise
-permalink: /vi/xac-thuc
+permalink: /vi/2016/xac-thuc
 ---
 # Thêm tính năng xác thực người dùng (authentication) với Devise
 
@@ -222,7 +222,7 @@ Thay toàn bộ nội dung file <code>app/views/users/edit.html.erb</code> với
   </div>
 <% end %>
 {% endhighlight %}
-Mở tệp tin <code>app/views/layouts/application.html.erb</code> và thay đổi các dòng 
+Mở tệp tin <code>app/views/layouts/application.html.erb</code> và thay đổi các dòng
 
 {% highlight erb %}
 Logged in as <strong><%= current_user.email %></strong>.
