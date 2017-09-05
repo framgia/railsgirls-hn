@@ -27,7 +27,7 @@ rails db:migrate
 
 ## *2.* Thêm các quan hệ vào các models
 
-Bạn cần phải chắc chắn một điều rằng Rails biết được mỗi quan hệ giữa các đối tượng với nhau (ở đây là **ideas** và **comment**). Vì một idea có thể có nhiều comments nên chúng ta cần đảm bảo rằng model `idea` biết được điều đó. Mở tập tin `app/models/idea.rb` và sau dòng
+Bạn cần phải chắc chắn một điều rằng Rails biết được mối quan hệ giữa các đối tượng với nhau (ở đây là **ideas** và **comment**). Vì một idea có thể có nhiều comments nên chúng ta cần đảm bảo rằng model `idea` biết được điều đó. Mở tập tin `app/models/idea.rb` và sau dòng
 
 {% highlight ruby %}
 class Idea < ActiveRecord::Base
@@ -84,7 +84,7 @@ Mở tập tin `app/views/comments/_form.html.erb` và sau các dòng sau
 {% highlight ruby %}
 <div class="field">
   <%= form.label :body %><br>
-  <%= form.text_area :body %>
+  <%= form.text_area :body, id: :comment_body %>
 </div>
 {% endhighlight %}
 
@@ -98,7 +98,7 @@ và tiếp theo là xóa các dòng sau
 
 {% highlight ruby %}
 <div class="field">
-  <%= form.label :idea_id %><br>
+  <%= form.label :idea_id %>
   <%= form.number_field :idea_id, id: :comment_idea_id %>
 </div>
 {% endhighlight %}
@@ -168,7 +168,15 @@ Mở tệp tin <code>app/models/comment.rb</code> và thêm vào dòng sau
 {% highlight ruby %}
 mount_uploader :picture, PictureUploader
 {% endhighlight %}
-Mở tệp tin <code>app/views/comments/_form.html.erb</code> và thêm vào dòng sau
+Mở tệp tin <code>app/views/comments/_form.html.erb</code> và sau các dòng
+{% highlight ruby %}
+<div class="field">
+  <%= form.label :body %>
+  <%= form.text_area :body, id: :comment_body %>
+  <%= form.hidden_field :idea_id %>
+</div>
+{% endhighlight %}
+thêm vào những dòng sau
 {% highlight ruby %}
 <div class="field">
   <%= form.label :picture %><br>
@@ -221,7 +229,7 @@ respond_to do |format|
   if @comment.save
     format.html { redirect_to idea_path(@comment.idea_id), notice: 'Comment was successfully created.' }
     format.json { render :show, status: :created, location: @comment }
-else
+  else
     format.html { render :new }
     format.json { render json: @comment.errors, status: :unprocessable_entity }
   end
