@@ -57,7 +57,7 @@ version :thumb do
 end
 {% endhighlight %}
 
-Những ảnh đã tải lên từ bây giờ đã thay đổi kích thước. Tuy nhiên chúng vẫn chưa được áp dụng với thay đổi trên. Bước tiếp theo chúng ta sẽ áp dụng.
+Những hình ảnh tải lên từ bây giờ sẽ được thay đổi kích thước, nhưng những ảnh đã tải lên trước đó sẽ không được thay đổi. Chúng ta có thể sửa chúng bằng cách sửa idea và upload lại ảnh.
 
 ## *3.* Hiện thị thumbnails
 Để thấy được những ảnh đã tải lên được thay đổi kích thước, mở `app/views/ideas/index.html.erb`
