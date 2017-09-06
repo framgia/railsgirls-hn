@@ -33,7 +33,7 @@ Sau đó thêm tiếp phần code dưới đây vào dưới cùng file:
 
 **Coach**: giải thích về 4 trạng thái của một link.
 
-## *2*.  Thiết kế ảnh và link
+## *2.*  Thiết kế ảnh và link
 Sửa lại kích thước của ảnh với
 {% highlight erb %}
 <%= image_tag(idea.picture_url, :width => 600) if idea.picture.present? %>

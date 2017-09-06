@@ -72,7 +72,7 @@ Mở tập tin `app/views/ideas/show.html.erb` và xóa dòng có nội dung nh�
 Thực hiện tương tự với tập tin `app/views/comments/show.html.erb`.  Những dòng thông báo này là không cần thiết vì chúng ta đã đưa chúng vào tập tin `app/views/layouts/application.html.erb`
 
 
-## *4*.  Thiết lập User model
+## *4.* Thiết lập User model
 
 Chúng ta sẽ sử dụng một generator script để khởi tạo User model
 
