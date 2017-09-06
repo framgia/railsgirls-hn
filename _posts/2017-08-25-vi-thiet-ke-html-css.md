@@ -12,7 +12,8 @@ Thêm phần code sau vào dưới cùng của file `app/assets/stylesheets/appl
 {% highlight css %}
 .navbar {
   min-height: 38px;
-  background-color: #f55e55;
+  background-color: #f55e55 !important;
+  background-image: none !important;
 }
 {% endhighlight %}
 
@@ -32,17 +33,7 @@ Sau đó thêm tiếp phần code dưới đây vào dưới cùng file:
 
 **Coach**: giải thích về 4 trạng thái của một link.
 
-## *2.*  Thiết kế table, ảnh và link
- Để đơn giản chúng ta sẽ sử dụng  twitter [Bootstrap](http://getbootstrap.com/) cho việc trang trí `table`
-Hãy tìm dòng dưới đây trong file `app/views/ideas/index.html.erb`
-
-{% highlight html %}
-<table>
-{% endhighlight %}
-và sửa nó thành
-{% highlight html %}
-<table class="table">
-{% endhighlight %}
+## *2*.  Thiết kế ảnh và link
 Sửa lại kích thước của ảnh với
 {% highlight erb %}
 <%= image_tag(idea.picture_url, :width => 600) if idea.picture.present? %>
@@ -79,10 +70,11 @@ Thêm đoạn code sau vào cuối file `app/assets/stylesheets/ideas.scss`:
   background-color: #f55e55;
   border: none;
   color: #fff;
+  background-image: none !important;
 }
 {% endhighlight %}
 
-rồi mở đường dẫn [http://localhost:3000/ideas/new](http://localhost:3000/ideas/new) và tìm nút `Create Idea`. Bạn có nhớ trước đó nó trông như thế nào không?
+rồi mở đường dẫn [http://localhost:3000/ideas/new](http://localhost:3000/ideas/new) và tìm nút `Submit your idea`. Bạn có nhớ trước đó nó trông như thế nào không?
 
 **Coach**: giải thích về thuộc tính `border` và cách sử dụng nó trong CSS, đồng thời hướng dẫn đổi thiết kế của `button` với một số kiểu như bo tròn góc, đổ bóng hoặc đổi màu ...
 
@@ -90,7 +82,7 @@ rồi mở đường dẫn [http://localhost:3000/ideas/new](http://localhost:30
 
 ## *A* CSS Transform
 
-Chúng ta hãy cùng thử làm cho nút nhấn `Create Idea` nghiêng một góc 45 độ như button dưới đây.
+Chúng ta hãy cùng thử làm cho nút nhấn `Submit your idea` nghiêng một góc 45 độ như button dưới đây.
 **Coach**: Nói thêm một chút về sức mạnh của CSS nói chung và CSS3 nói riêng, và gợi ý về cách để làm một nút nhấn nghiêng góc
 
 - Code mẫu dưới đây có thể giúp các bạn làm được nút nhấn như thế này, nhưng thử tìm hiểu tại [W3School](http://www.w3schools.com/cssref/css3_pr_transform.asp) xem sao đã nào.
@@ -115,6 +107,8 @@ Chúng ta hãy cùng thử làm cho nút nhấn `Create Idea` nghiêng một gó
 ## *B* Thiết kế timeline với Bootstrap
 
 ![railsgirls-hn-2016-04-timeline]({{ site.baseurl }}/images/railsgirls-hn-201604.jpg)
+
+
 **Coach**: nói lại một chút về giao diện grid của Bootstrap và mô tả một giao diện timeline cho `Comment` của `Idea`
 
 - Các bạn có thể sửa đổi giao diện thành như trên theo code dưới đây, nhưng trước tiên hãy thử tự làm xem sao.

@@ -8,7 +8,7 @@ permalink: /vi/xac-thuc
 > Viết bởi Piotr Steininger, [@polishprince](https://twitter.com/polishprince)
 > Cập nhật bởi Ernesto Jimenez, [@ernesto_jimenez](https://twitter.com/ernesto_jimenez)
 
-**Hướng dẫn này giả định rằng bạn đã xây dựng một ứng dụng Rails Girl bằng cách làm theo** [hướng dẫn xây dựng ứng dụng](/app)
+**Hướng dẫn này giả định rằng bạn đã xây dựng một ứng dụng Rails Girl bằng cách làm theo** [hướng dẫn xây dựng ứng dụng](/railsgirls-hn/vi/app)
 
 ## *1.* Thêm devise gem
 
@@ -24,7 +24,9 @@ Và chạy lệnh sau
 bundle install
 {% endhighlight %}
 
-để cài đặt `devise` gem. ** Và nhớ bạn cần phải khởi động lại server **
+để cài đặt `devise` gem.
+
+**Và nhớ bạn cần phải khởi động lại server**
 
 ## *2.* Thiết lập devise cho ứng dụng của bạn
 
@@ -67,9 +69,10 @@ Mở tập tin `app/views/ideas/show.html.erb` và xóa dòng có nội dung nh�
 <p id="notice"><%= notice %></p>
 {% endhighlight %}
 
-Thực hiện tương tự với tập tin `app/views/comments/show.html.erb`.  Những dòng thông báo này là không cần thiết vì chúng ta đã đưa chúng vào tập tin `app/views/layouts/application.html.erb`.
+Thực hiện tương tự với tập tin `app/views/comments/show.html.erb`.  Những dòng thông báo này là không cần thiết vì chúng ta đã đưa chúng vào tập tin `app/views/layouts/application.html.erb`
 
-## *4*. Thiết lập User model
+
+## *4*.  Thiết lập User model
 
 Chúng ta sẽ sử dụng một generator script để khởi tạo User model
 
@@ -77,6 +80,7 @@ Chúng ta sẽ sử dụng một generator script để khởi tạo User model
  rails g devise user
  rails db:migrate
 {% endhighlight %}
+**Và nhớ bạn cần phải khởi động lại server**
 
 **Coach:** Giải thích về user model đã được tạo ra. Các trường (fields) nào được tạo ra và nó là gì?
 
@@ -106,9 +110,7 @@ Tất cả những điều chúng ta cần làm bây giờ là thêm liên kết
 vào ngay dưới những dòng sau
 
 {% highlight ruby %}
-<ul class="nav">
   <li class="active"><a href="/ideas">Ideas</a></li>
-</ul>
 {% endhighlight %}
 
 Cuối cùng, chúng ta sẽ buộc người dùng chuyển hướng đến trang đăng nhập nếu người dùng chưa đăng nhập vào ứng dụng. Mở tập tin `app/controllers/application_controller.rb` và thêm vào dòng sau
@@ -133,7 +135,7 @@ Mở trình duyệt của bạn và hãy thử đăng nhập, đăng xuất.
 - Bổ sung thêm các trường khác cho model User
 - Thêm các quan hệ giữa users và ideas
 - Hạn chế chỉ cho phép người dùng được xóa những ideas và comments của mình
-- Mở rộng thêm về việc dùng roles và permissions (usử dụng một gem phổ biến về authorization như CanCan)
+- Mở rộng thêm về việc dùng roles và permissions (sử dụng một gem phổ biến về authorization như CanCan)
 
 # Những câu hỏi nâng cao
 
@@ -189,7 +191,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to root_path, notice: 'Update Profile was successfully updated.'
+      redirect_to root_path, notice: 'Profile was successfully updated.'
     else
       render :edit
     end
@@ -298,6 +300,7 @@ Cuối cùng cần cấp quyền truy cập <code>user_id</code> cho <code>comme
 {% highlight ruby %}
 params.require(:comment).permit(:user_name, :body, :idea_id, :picture, :reply_id, :user_id)
 {% endhighlight %}
+
 **Lưu ý**: trường <code>:picture</code> và <code>reply_id</code> ở trên là những phần mở rộng cho các câu hỏi trong phần 5, nếu bạn nào bỏ qua phần đó thì ta có thể bỏ 2 trường đó đi.
 </div>
 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#user_comment-example" aria-expanded="false" aria-controls="user_comment-example">Code mẫu</button>
