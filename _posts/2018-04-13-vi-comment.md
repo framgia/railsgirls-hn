@@ -1,9 +1,9 @@
 ---
 layout: hanoi-201804
-title: Thêm tính năng comment cho ứng dụng Rails
+title: Thêm tính năng gửi bình luận
 permalink: /vi/comment
 ---
-# Thêm tính năng comment cho ứng dụng Rails
+# Thêm tính năng gửi bình luận
 
 
 **Hướng dẫn này giả định rằng bạn đã xây dựng một ứng dụng Rails Girl bằng cách làm theo** [hướng dẫn xây dựng ứng dụng](/railsgirls-hn/vi/app)
