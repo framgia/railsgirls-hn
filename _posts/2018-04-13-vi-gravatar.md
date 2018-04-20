@@ -1,6 +1,6 @@
 ---
 layout: hanoi-201604
-title: Hướng dẫn sử dụng gravatar cho ứng dụng Rails Girls
+title: Hướng dẫn sử dụng gravatar cho ứng dụng
 permalink: /vi/gravatar
 ---
 
