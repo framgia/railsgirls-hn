@@ -1,14 +1,14 @@
 ---
-layout: hanoi-201804
+layout: hanoi-201604
 title: Thêm tính năng gửi bình luận
-permalink: /vi/comment
+permalink: /vi/binh-luan
 ---
 # Thêm tính năng gửi bình luận
 
 
-**Hướng dẫn này giả định rằng bạn đã xây dựng một ứng dụng Rails Girl bằng cách làm theo** [hướng dẫn xây dựng ứng dụng](/railsgirls-hn/vi/app)
+**Giả định rằng bạn đã xây dựng một ứng dụng Rails Girl bằng cách làm theo** [hướng dẫn cơ bản đầu tiên](/railsgirls-hn/vi/app)
 
-#1. Tạo comment scaffold
+## *1.* Tạo comment scaffold
 Tạo một scaffold cho comment, với tên người comment, body của comment (nội dung comment) và tham chiếu (liên kết) đến bảng ideas (idea_id)
 {% highlight ruby %}
 rails g scaffold comment user_name:string body:text idea_id:integer
@@ -30,7 +30,7 @@ rails db:migrate
 
 Khi đó, trong file `schema.rb` sẽ sinh ra bảng ideal trong cơ sở dữ liệu của bạn
 
-### *2.* Thêm các quan hệ vào các models
+## *2.* Thêm các quan hệ vào các models
 
 Bạn cần phải chắc chắn một điều rằng Rails biết được mỗi quan hệ giữa các đối tượng với nhau (2 đối tượng ở đây là **ideas** và **comments**). Vì một idea có thể có nhiều comments nên chúng ta cần đảm bảo rằng model `idea` biết được điều đó. Mở tập tin `app/models/idea.rb` và sau dòng
 
@@ -55,7 +55,7 @@ Thêm vào
 belongs_to :idea
 {% endhighlight %}
 
-### *3.* Hiển thị biểu mẫu thêm comment (comment form) và các comment đã tồn tại
+## *3.* Hiển thị form thêm comment và các comment đã tồn tại
 
 Mở tập tin `app/views/ideas/show.html.erb` và sau `image_tag`
 
@@ -107,9 +107,9 @@ Và tiếp theo là xóa các dòng sau
 
 Vậy là đã hoàn thành. Bây giờ bạn có thể xem một `Idea` mà bạn đã thêm vào ứng dụng của bạn trước đây và ở đó bạn sẽ thấy một biểu mẫu để thêm vào các `Comments` mới cũng như là xóa các comments cũ.
 
-### Những câu hỏi nâng cao
+## Những câu hỏi nâng cao
 
-#### *1.* Dễ
+### *1.* Dễ
 
 - Di chuyển đến trang `idea/show` sau khi tạo mới một bình luận (comment)
 <div class="collapse" id="button-example">
@@ -163,7 +163,7 @@ rake db:migrate
 </div>
 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#reply-example" aria-expanded="false" aria-controls="reply-example">Code mẫu</button>
 
-#### *2.* Bình thường
+### *2.* Bình thường
 - Cho phép bình luận bằng hình ảnh
 <div class="collapse" id="image_comment-example">
 Mở tệp tin <code>app/models/comment.rb</code> và thêm vào dòng sau
@@ -251,6 +251,6 @@ end
 </div>
 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#error-example" aria-expanded="false" aria-controls="error-example">Code mẫu</button>
 
-#### *3.* Khó
+### *3.* Khó
 - Cho phép trả lời các comment
 - Thực thi chức năng like cho một comment
